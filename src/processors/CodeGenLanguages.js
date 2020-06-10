@@ -9,6 +9,7 @@
 
 import {render} from 'mustache';
 import codegenLanguageJava from './CodeGenLanguageJava';
+import CodeGenLanguageCSharp from './CodeGenLanguageCSharp';
 import codegenLanguageRuby from './CodeGenLanguageRuby';
 import codegenLanguageNodeJs from './CodeGenLanguageNodeJs';
 // @fb-only
@@ -151,6 +152,7 @@ const CodeGenLanguages = {
   },
   java: codegenLanguageJava,
   ruby: codegenLanguageRuby,
+  csharp: CodeGenLanguageCSharp
 };
 
 export default CodeGenLanguages;

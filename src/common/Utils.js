@@ -25,6 +25,7 @@ const Utils = {
   validateLanguage(language: string) {
     const supportedLanguages = [
       // @fb-only
+      'csharp',
       'java',
       'nodejs',
       'php',

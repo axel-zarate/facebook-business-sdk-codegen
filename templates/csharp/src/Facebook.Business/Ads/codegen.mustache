@@ -1,0 +1,179 @@
+/**
+ * Copyright (c) 2015-present, Facebook, Inc. All rights reserved.
+ *
+ * You are hereby granted a non-exclusive, worldwide, royalty-free license to
+ * use, copy, modify, and distribute this software in source code or binary
+ * form for use in connection with the web services and APIs provided by
+ * Facebook.
+ *
+ * As with any software that integrates with the Facebook platform, your use
+ * of this software is subject to the Facebook Developer Principles and
+ * Policies [http://developers.facebook.com/policy/]. This copyright notice
+ * shall be included in all copies or substantial portions of the software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+/**
+ * This class is auto-generated.
+ *
+ * For any issues or feature requests related to this class, please let us know
+ * on github and we'll fix in our codegen framework. We'll not be able to accept
+ * pull request for this class.
+ *
+ */
+namespace Facebook.Business.Ads
+{
+    public class {{name:pascal_case}} : ApiNode
+    {
+        {{#fields}}
+        {{^is_creation_field}}
+        {{#cls_is_Campaign}}
+        {{#is_id_field}}
+        [JsonPropertyName("id")]
+        {{/is_id_field}}
+        {{^is_id_field}}
+        [JsonPropertyName("{{api_name}}")]
+        {{/is_id_field}}
+        {{/cls_is_Campaign}}
+        {{^cls_is_Campaign}}
+        [JsonPropertyName("{{api_name}}")]
+        {{/cls_is_Campaign}}
+        public {{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} {{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} { get; set; }
+
+        {{/is_creation_field}}
+        {{/fields}}
+        {{#cls_is_AdCreative}}
+        [JsonPropertyName("creative_id")]
+        public string CreativeId { get; set; }
+        {{/cls_is_AdCreative}}
+
+        {{^has_get}}public {{/has_get}}{{#has_get}}{{#can_be_data_type}}public {{/can_be_data_type}}{{^can_be_data_type}}internal {{/can_be_data_type}}{{/has_get}}{{name:pascal_case}}()
+        {
+        }
+        {{#has_get}}
+
+        public {{name:pascal_case}}(long id) : this(id.ToString())
+        {
+        }
+
+        public {{name:pascal_case}}(string id)
+        {
+            {{^cls_is_AdAccount}}
+            {{^cls_is_AsyncRequest}}
+            Id = id;
+            {{/cls_is_AsyncRequest}}
+            {{/cls_is_AdAccount}}
+            {{#cls_is_AdAccount}}
+            Id = id.Replace("act_", string.Empty);
+            {{/cls_is_AdAccount}}
+            {{#cls_is_AdCreative}}
+            CreativeId = Id.ToString();
+            {{/cls_is_AdCreative}}
+            {{#cls_is_AsyncRequest}}
+            Id = long.Parse(id);
+            {{/cls_is_AsyncRequest}}
+        }
+
+        private string PrefixedId =>
+        {{#cls_is_AdAccount}}
+            "act_" + Id;
+        {{/cls_is_AdAccount}}
+        {{^cls_is_AdAccount}}
+            Id;
+        {{/cls_is_AdAccount}}
+        {{/has_get}}
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
+
+        {{#fields}}
+        {{^is_creation_field}}
+
+        {{^has_get}}
+        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} value)
+        {
+            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = value;
+            return this;
+        }
+
+        {{#is_node}}
+        public {{cls:name:pascal_case}} setField{{name:pascal_case}}(string value)
+        {
+            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = JsonSerializer.Deserialize<{{{type:csharp}}}>(value);
+            {{#cls_is_AdCreative}}
+            {{#is_id_field}}
+            this.CreativeId = this.Id;
+            {{/is_id_field}}
+            {{/cls_is_AdCreative}}
+            return this;
+        }
+        {{/is_node}}
+        {{/has_get}}
+        {{#has_get}}
+        {{#can_be_data_type}}
+        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} value)
+        {
+            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = value;
+            {{#cls_is_AdCreative}}
+            {{#is_id_field}}
+            this.CreativeId = this.Id;
+            {{/is_id_field}}
+            {{/cls_is_AdCreative}}
+            return this;
+        }
+
+        {{#is_node}}
+        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}(string value)
+        {
+            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = JsonSerializer.Deserialize<{{{type:csharp}}}>(value);
+            return this;
+        }
+        {{/is_node}}
+        {{/can_be_data_type}}
+        {{/has_get}}
+        {{/is_creation_field}}
+        {{/fields}}
+
+        public {{name:pascal_case}} CopyFrom({{name:pascal_case}} instance)
+        {
+            {{#fields}}
+            {{^is_creation_field}}
+            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = instance.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}};
+            {{/is_creation_field}}
+            {{/fields}}
+            {{#cls_is_AdCreative}}
+            this.CreativeId = this.Id;
+            {{/cls_is_AdCreative}}
+            // this.Context = instance.Context;
+            // this.RawValue = instance.RawValue;
+            return this;
+        }
+
+        {{#api_spec_based_enum_reference}}
+        public enum Enum{{field_or_param:pascal_case}}
+        {
+            {{#values_with_naming_convention}}
+            [EnumMember(Value = "{{{value}}}")]
+            {{#is_irregular_name}}Value{{/is_irregular_name}}{{{value:pascal_case}}},
+            {{/values_with_naming_convention}}
+        }
+
+        {{/api_spec_based_enum_reference}}
+    }
+}
