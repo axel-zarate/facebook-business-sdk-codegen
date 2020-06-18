@@ -24,8 +24,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 /**
  * This class is auto-generated.
@@ -43,21 +43,21 @@ namespace Facebook.Business.Ads
         {{^is_creation_field}}
         {{#cls_is_Campaign}}
         {{#is_id_field}}
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         {{/is_id_field}}
         {{^is_id_field}}
-        [JsonPropertyName("{{api_name}}")]
+        [JsonProperty("{{api_name}}")]
         {{/is_id_field}}
         {{/cls_is_Campaign}}
         {{^cls_is_Campaign}}
-        [JsonPropertyName("{{api_name}}")]
+        [JsonProperty("{{api_name}}")]
         {{/cls_is_Campaign}}
-        public {{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} {{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} { get; set; }
-
+        public {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}} {{name:csharp}} { get; set; }
         {{/is_creation_field}}
         {{/fields}}
         {{#cls_is_AdCreative}}
-        [JsonPropertyName("creative_id")]
+
+        [JsonProperty("creative_id")]
         public string CreativeId { get; set; }
         {{/cls_is_AdCreative}}
 
@@ -88,73 +88,14 @@ namespace Facebook.Business.Ads
             {{/cls_is_AsyncRequest}}
         }
 
-        private string PrefixedId =>
-        {{#cls_is_AdAccount}}
-            "act_" + Id;
-        {{/cls_is_AdAccount}}
-        {{^cls_is_AdAccount}}
-            Id;
-        {{/cls_is_AdAccount}}
+        private string PrefixedId => {{#cls_is_AdAccount}}"act_" + Id;{{/cls_is_AdAccount}}{{^cls_is_AdAccount}}Id;{{/cls_is_AdAccount}}
         {{/has_get}}
-
-        public override string ToString()
-        {
-            throw new NotImplementedException();
-        }
-
-        {{#fields}}
-        {{^is_creation_field}}
-
-        {{^has_get}}
-        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} value)
-        {
-            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = value;
-            return this;
-        }
-
-        {{#is_node}}
-        public {{cls:name:pascal_case}} setField{{name:pascal_case}}(string value)
-        {
-            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = JsonSerializer.Deserialize<{{{type:csharp}}}>(value);
-            {{#cls_is_AdCreative}}
-            {{#is_id_field}}
-            this.CreativeId = this.Id;
-            {{/is_id_field}}
-            {{/cls_is_AdCreative}}
-            return this;
-        }
-        {{/is_node}}
-        {{/has_get}}
-        {{#has_get}}
-        {{#can_be_data_type}}
-        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JsonElement{{/type:csharp}} value)
-        {
-            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = value;
-            {{#cls_is_AdCreative}}
-            {{#is_id_field}}
-            this.CreativeId = this.Id;
-            {{/is_id_field}}
-            {{/cls_is_AdCreative}}
-            return this;
-        }
-
-        {{#is_node}}
-        public {{cls:name:pascal_case}} SetField{{name:pascal_case}}(string value)
-        {
-            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = JsonSerializer.Deserialize<{{{type:csharp}}}>(value);
-            return this;
-        }
-        {{/is_node}}
-        {{/can_be_data_type}}
-        {{/has_get}}
-        {{/is_creation_field}}
-        {{/fields}}
 
         public {{name:pascal_case}} CopyFrom({{name:pascal_case}} instance)
         {
             {{#fields}}
             {{^is_creation_field}}
-            this.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}} = instance.{{#is_irregular_name}}Value{{/is_irregular_name}}{{#is_same_name_as_class}}__{{/is_same_name_as_class}}{{name:pascal_case}};
+            this.{{name:csharp}} = instance.{{name:csharp}};
             {{/is_creation_field}}
             {{/fields}}
             {{#cls_is_AdCreative}}
@@ -164,8 +105,8 @@ namespace Facebook.Business.Ads
             // this.RawValue = instance.RawValue;
             return this;
         }
-
         {{#api_spec_based_enum_reference}}
+
         public enum Enum{{field_or_param:pascal_case}}
         {
             {{#values_with_naming_convention}}
@@ -173,7 +114,6 @@ namespace Facebook.Business.Ads
             {{#is_irregular_name}}Value{{/is_irregular_name}}{{{value:pascal_case}}},
             {{/values_with_naming_convention}}
         }
-
         {{/api_spec_based_enum_reference}}
     }
 }

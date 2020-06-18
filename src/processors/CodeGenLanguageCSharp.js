@@ -145,7 +145,11 @@ const CodeGenLanguageCSharp = {
           }
         }
         if (APIClsSpec['name:pascal_case'] === fieldSpec['name:pascal_case']) {
-          fieldSpec.is_same_name_as_class = true;
+          fieldSpec['name:csharp'] = fieldSpec['name:pascal_case'] + '_';
+        } else if (fieldSpec.is_irregular_name) {
+          fieldSpec['name:csharp'] = 'Value' + fieldSpec['name:pascal_case'];
+        } else {
+          fieldSpec['name:csharp'] = fieldSpec['name:pascal_case'];
         }
       }
     }
