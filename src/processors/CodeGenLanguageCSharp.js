@@ -163,9 +163,11 @@ const CodeGenLanguageCSharp = {
 
     // This is not perfect. But it's working for all types we have so far.
     const typeMapping = {
-      string: /string|datetime/gi,
+      DateTime: /datetime/gi,
+      ulong: /unsigned int/gi,
       bool: /bool(ean)?/gi,
-      long: /(((unsigned\s*)?(\bint|long)))(?![a-zA-Z0-9_])/gi,
+      // long: /(((unsigned\s*)?(\bint|long)))(?![a-zA-Z0-9_])/gi,
+      long: /\b(int|long)\b/,
       double: /(float|double)/gi,
       'List<$1>': /list\s*<\s*([a-zA-Z0-9_.<>,\s]*?)\s*>/g,
       '$1Dictionary<string, string>$2': /(^|<)map($|>)/i,
@@ -180,10 +182,10 @@ const CodeGenLanguageCSharp = {
         newType = newType.replace(typeMapping[replace], replace);
       }
     }
-    // This is to make a type named as list to JsonElement.
+    // This is to make a type named as list to JToken.
     // However the 'list' should not be preceden by any word,
     // which might be 'blacklist', and should not be replaced
-    newType = newType.replace(/(?<!\w)list(?!<)/g, 'JsonElement');
+    newType = newType.replace(/(?<!\w)list(?!<)/g, 'JToken');
     newType = newType.replace(/^file$/i, 'File');
     // List<file> => List<File>
     newType = newType.replace(/<file>/i, '<File>');

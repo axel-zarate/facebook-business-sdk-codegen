@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 /**
@@ -37,7 +38,7 @@ using Newtonsoft.Json.Linq;
  */
 namespace Facebook.Business.Ads
 {
-    public class {{name:pascal_case}} : ApiNode
+    public partial class {{name:pascal_case}} : ApiNode
     {
         {{#fields}}
         {{^is_creation_field}}
@@ -53,14 +54,14 @@ namespace Facebook.Business.Ads
         [JsonProperty("{{api_name}}")]
         {{/cls_is_Campaign}}
         public {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}} {{name:csharp}} { get; set; }
+
         {{/is_creation_field}}
         {{/fields}}
         {{#cls_is_AdCreative}}
-
         [JsonProperty("creative_id")]
         public string CreativeId { get; set; }
-        {{/cls_is_AdCreative}}
 
+        {{/cls_is_AdCreative}}
         {{^has_get}}public {{/has_get}}{{#has_get}}{{#can_be_data_type}}public {{/can_be_data_type}}{{^can_be_data_type}}internal {{/can_be_data_type}}{{/has_get}}{{name:pascal_case}}()
         {
         }
@@ -87,26 +88,10 @@ namespace Facebook.Business.Ads
             Id = long.Parse(id);
             {{/cls_is_AsyncRequest}}
         }
-
-        private string PrefixedId => {{#cls_is_AdAccount}}"act_" + Id;{{/cls_is_AdAccount}}{{^cls_is_AdAccount}}Id;{{/cls_is_AdAccount}}
         {{/has_get}}
-
-        public {{name:pascal_case}} CopyFrom({{name:pascal_case}} instance)
-        {
-            {{#fields}}
-            {{^is_creation_field}}
-            this.{{name:csharp}} = instance.{{name:csharp}};
-            {{/is_creation_field}}
-            {{/fields}}
-            {{#cls_is_AdCreative}}
-            this.CreativeId = this.Id;
-            {{/cls_is_AdCreative}}
-            // this.Context = instance.Context;
-            // this.RawValue = instance.RawValue;
-            return this;
-        }
         {{#api_spec_based_enum_reference}}
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum Enum{{field_or_param:pascal_case}}
         {
             {{#values_with_naming_convention}}
