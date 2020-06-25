@@ -8,6 +8,6 @@ namespace Facebook.Business
     public abstract class ApiNode
     {
         [JsonExtensionData(WriteData = false)]
-        public IDictionary<string, JToken> ExtensionData { get; set; }
+        public IDictionary<string, JToken>? ExtensionData { get; set; }
     }
 }

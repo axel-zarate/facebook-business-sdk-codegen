@@ -53,13 +53,13 @@ namespace Facebook.Business.Ads
         {{^cls_is_Campaign}}
         [JsonProperty("{{api_name}}")]
         {{/cls_is_Campaign}}
-        public {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}} {{name:csharp}} { get; set; }
+        public {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}}? {{name:csharp}} { get; set; }
 
         {{/is_creation_field}}
         {{/fields}}
         {{#cls_is_AdCreative}}
         [JsonProperty("creative_id")]
-        public string CreativeId { get; set; }
+        public string? CreativeId { get; set; }
 
         {{/cls_is_AdCreative}}
         {{^has_get}}public {{/has_get}}{{#has_get}}{{#can_be_data_type}}public {{/can_be_data_type}}{{^can_be_data_type}}internal {{/can_be_data_type}}{{/has_get}}{{name:pascal_case}}()
