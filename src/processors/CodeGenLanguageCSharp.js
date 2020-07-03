@@ -94,7 +94,7 @@ const CodeGenLanguageCSharp = {
               paramSpec['basetype:csharp'] = csBaseType;
             } else {
               paramSpec['type:csharp'] = this.getTypeForCSharp(paramSpec.type);
-              if (paramSpec['type:csharp'] == 'String') {
+              if (paramSpec['type:csharp'] == 'string') {
                 paramSpec.is_string = true;
               }
             }
@@ -138,7 +138,7 @@ const CodeGenLanguageCSharp = {
             }
           } else {
             if (fieldSpec.keyvalue) {
-              fieldSpec['type:csharp'] = 'List<KeyValue>';
+              fieldSpec['type:csharp'] = 'IList<KeyValue>';
             } else {
               fieldSpec['type:csharp'] = this.getTypeForCSharp(fieldSpec.type);
             }
@@ -169,7 +169,7 @@ const CodeGenLanguageCSharp = {
       // long: /(((unsigned\s*)?(\bint|long)))(?![a-zA-Z0-9_])/gi,
       long: /\b(int|long)\b/,
       double: /(float|double)/gi,
-      'List<$1>': /list\s*<\s*([a-zA-Z0-9_.<>,\s]*?)\s*>/g,
+      'IList<$1>': /list\s*<\s*([a-zA-Z0-9_.<>,\s]*?)\s*>/g,
       '$1Dictionary<string, string>$2': /(^|<)map($|>)/i,
       'Dictionary<$1, $2>': /map\s*<\s*([a-zA-Z0-9_]*?)\s*,\s*([a-zA-Z0-9_<>]*?)\s*>/g,
     };
@@ -186,12 +186,12 @@ const CodeGenLanguageCSharp = {
     // However the 'list' should not be preceden by any word,
     // which might be 'blacklist', and should not be replaced
     newType = newType.replace(/(?<!\w)list(?!<)/g, 'JToken');
-    newType = newType.replace(/^file$/i, 'File');
-    // List<file> => List<File>
-    newType = newType.replace(/<file>/i, '<File>');
+    newType = newType.replace(/^file$/i, 'System.IO.Stream');
+    // List<file> => List<System.IO.Stream>
+    newType = newType.replace(/<file>/i, '<System.IO.Stream>');
     return newType;
   },
-  keywords: ['try', 'private', 'public', 'protected', 'internal', 'new', 'default', 'class'],
+  keywords: ['try', 'private', 'public', 'protected', 'internal', 'new', 'default', 'class', 'params', 'namespace', 'ref', 'event', 'object', 'operator'],
 };
 
 export default CodeGenLanguageCSharp;

@@ -67,6 +67,14 @@ namespace Facebook.Business.Ads
         }
         {{#has_get}}
 
+        private string? PrefixedId =>
+        {{#cls_is_AdAccount}}
+            "act_" + Id;
+        {{/cls_is_AdAccount}}
+        {{^cls_is_AdAccount}}
+            Id;
+        {{/cls_is_AdAccount}}
+
         public {{name:pascal_case}}(long id) : this(id.ToString())
         {
         }
@@ -82,13 +90,20 @@ namespace Facebook.Business.Ads
             Id = id.Replace("act_", string.Empty);
             {{/cls_is_AdAccount}}
             {{#cls_is_AdCreative}}
-            CreativeId = Id.ToString();
+            CreativeId = Id;
             {{/cls_is_AdCreative}}
             {{#cls_is_AsyncRequest}}
             Id = long.Parse(id);
             {{/cls_is_AsyncRequest}}
         }
         {{/has_get}}
+        {{#apis}}
+
+        public {{name:pascal_case}}ApiRequest {{name:pascal_case}}(ApiContext context)
+        {
+            return new {{name:pascal_case}}ApiRequest(context, {{^has_get}}Id{{/has_get}}{{#has_get}}PrefixedId{{/has_get}});
+        }
+        {{/apis}}
         {{#api_spec_based_enum_reference}}
 
         [JsonConverter(typeof(StringEnumConverter))]
@@ -100,5 +115,103 @@ namespace Facebook.Business.Ads
             {{/values_with_naming_convention}}
         }
         {{/api_spec_based_enum_reference}}
+        {{#apis}}
+
+        public class {{name:pascal_case}}ApiRequest : ApiRequest<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}ApiNode{{/return}}{{^return_single_node}}>{{/return_single_node}}>
+        {
+            {{#params}}
+            public const string Param{{name:pascal_case}} = "{{api_name}}";
+            {{/params}}
+            {{#allow_file_upload}}
+            public const string ParamFile = "file";
+            {{/allow_file_upload}}
+
+            protected override string[] ParamNames { get; } =
+            {
+                {{#params}}
+                Param{{name:pascal_case}},
+                {{/params}}
+                {{#allow_file_upload}}
+                ParamFile,
+                {{/allow_file_upload}}
+            };
+
+            {{#param_fields}}
+            {{^not_visible}}
+            public const string Field{{name:pascal_case}} = "{{api_name}}";
+            {{/not_visible}}
+            {{/param_fields}}
+            protected override string[] FieldNames { get; } =
+            {
+                {{#param_fields}}
+                {{^not_visible}}
+                Field{{name:pascal_case}},
+                {{/not_visible}}
+                {{/param_fields}}
+            };
+
+            protected override string Method { get; } = "{{{method}}}";
+
+            protected override string Endpoint { get; } = "{{{endpoint}}}";
+
+            public {{name:pascal_case}}ApiRequest(ApiContext context) : base(context) { }
+
+            public {{name:pascal_case}}ApiRequest(ApiContext context, string? nodeId) : base(context, nodeId) { }
+            {{#allow_file_upload}}
+
+            public {{name:pascal_case}}ApiRequest AddUploadFile(string uploadName, System.IO.Stream file)
+            {
+                SetParam(uploadName, file);
+                return this;
+            }
+
+            public {{name:pascal_case}}ApiRequest SetUseVideoEndpoint(bool useVideoEndpoint)
+            {
+                UseVideoEndpoint = useVideoEndpoint;
+                return this;
+            }
+            {{/allow_file_upload}}
+            {{#params}}
+
+            public {{api:name:pascal_case}}ApiRequest Set{{#param_name_params}}Param{{/param_name_params}}{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}} {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
+            {
+                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                return this;
+            }
+            {{#is_file_param}}
+
+            public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}} (System.IO.Stream {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
+            {
+                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                return this;
+            }
+
+            public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}} (byte[] {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
+            {
+                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                return this;
+            }
+            {{/is_file_param}}
+            {{^is_string}}
+
+            public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}}(string {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
+            {
+                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                return this;
+            }
+            {{/is_string}}
+            {{/params}}
+            {{#param_fields}}
+            {{^not_visible}}
+
+            public {{api:name:pascal_case}}ApiRequest Request{{name:pascal_case}}Field()
+            {
+                RequestField(Field{{name:pascal_case}});
+                return this;
+            }
+            {{/not_visible}}
+            {{/param_fields}}
+        }
+        {{/apis}}
     }
 }
