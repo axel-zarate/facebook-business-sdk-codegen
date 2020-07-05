@@ -82,6 +82,15 @@ namespace Facebook.Business
                         };
                     }
                 }
+
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ApiNodeList<>))
+                {
+                    var arguments = type.GetGenericArguments();
+                    var converterType = typeof(ApiNodeListConverter<>)
+                        .MakeGenericType(arguments);
+
+                    contract.Converter = (JsonConverter)Activator.CreateInstance(converterType);
+                }
                 return contract;
             }
 

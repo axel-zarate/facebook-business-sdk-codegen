@@ -113,7 +113,7 @@ namespace Facebook.Business.Ads
         {{/api_spec_based_enum_reference}}
         {{#apis}}
 
-        public class {{name:pascal_case}}ApiRequest : ApiRequest<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}ApiNode{{/return}}{{^return_single_node}}>{{/return_single_node}}>
+        public class {{name:pascal_case}}ApiRequest : ApiRequestBase<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}JToken{{/return}}{{^return_single_node}}>{{/return_single_node}}>
         {
             {{#params}}
             public const string Param{{name:pascal_case}} = "{{api_name}}";
@@ -122,7 +122,7 @@ namespace Facebook.Business.Ads
             public const string ParamFile = "file";
             {{/allow_file_upload}}
 
-            protected override string[] ParamNames { get; } =
+            private static readonly string[] _ParamNames =
             {
                 {{#params}}
                 Param{{name:pascal_case}},
@@ -132,12 +132,15 @@ namespace Facebook.Business.Ads
                 {{/allow_file_upload}}
             };
 
+            protected override ICollection<string> ParamNames => _ParamNames;
+
             {{#param_fields}}
             {{^not_visible}}
             public const string Field{{name:pascal_case}} = "{{api_name}}";
             {{/not_visible}}
             {{/param_fields}}
-            protected override string[] FieldNames { get; } =
+
+            private static readonly string[] _FieldNames =
             {
                 {{#param_fields}}
                 {{^not_visible}}
@@ -146,9 +149,11 @@ namespace Facebook.Business.Ads
                 {{/param_fields}}
             };
 
-            protected override string Method { get; } = "{{{method}}}";
+            protected internal override ICollection<string> FieldNames => _FieldNames;
 
-            protected override string Endpoint { get; } = "{{{endpoint}}}";
+            protected override string Method => "{{{method}}}";
+
+            protected override string Endpoint => "{{{endpoint}}}";
 
             public {{name:pascal_case}}ApiRequest(ApiContext context) : base(context) { }
 

@@ -5,9 +5,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Facebook.Business
 {
-    public abstract class ApiNode
+    public class ApiNode
     {
         [JsonExtensionData]
         public IDictionary<string, JToken>? ExtensionData { get; set; }
+
+        internal ApiNode()
+        {
+        }
     }
 }
