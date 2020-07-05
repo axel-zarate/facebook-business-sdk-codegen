@@ -12,9 +12,9 @@ namespace Facebook.Business
 
         public string AccessToken { get; }
 
-        public string AppSecret { get; }
+        public string? AppSecret { get; }
 
-        public string AppId { get; }
+        public string? AppId { get; }
 
         public HttpClient BackChannel { get; }
 
@@ -24,13 +24,19 @@ namespace Facebook.Business
         {
             get
             {
-                if (SendAppSecretProof && _appSecretProof is null)
+                if (SendAppSecretProof && AppSecret != null && _appSecretProof is null)
                 {
                     _appSecretProof = GenerateAppSecretProof();
                 }
 
                 return _appSecretProof;
             }
+        }
+
+        public ApiContext(string accessToken, HttpClient backChannel)
+        {
+            AccessToken = accessToken;
+            BackChannel = backChannel;
         }
 
         public ApiContext(string accessToken, string appSecret, string appId, HttpClient backChannel)

@@ -67,12 +67,8 @@ namespace Facebook.Business.Ads
         }
         {{#has_get}}
 
-        private string? PrefixedId =>
         {{#cls_is_AdAccount}}
-            "act_" + Id;
-        {{/cls_is_AdAccount}}
-        {{^cls_is_AdAccount}}
-            Id;
+        private string PrefixedId => "act_" + Id;
         {{/cls_is_AdAccount}}
 
         public {{name:pascal_case}}(long id) : this(id.ToString())
@@ -101,7 +97,7 @@ namespace Facebook.Business.Ads
 
         public {{name:pascal_case}}ApiRequest {{name:pascal_case}}(ApiContext context)
         {
-            return new {{name:pascal_case}}ApiRequest(context, {{^has_get}}Id{{/has_get}}{{#has_get}}PrefixedId{{/has_get}});
+            return new {{name:pascal_case}}ApiRequest(context, {{#cls_is_AdAccount}}Prefixed{{/cls_is_AdAccount}}Id);
         }
         {{/apis}}
         {{#api_spec_based_enum_reference}}
