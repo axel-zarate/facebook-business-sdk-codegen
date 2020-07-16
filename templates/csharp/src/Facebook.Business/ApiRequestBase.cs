@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace Facebook.Business
 {
@@ -73,6 +74,7 @@ namespace Facebook.Business
                 case "GET":
                     method = HttpMethod.Get;
                     break;
+
                 case "DELETE":
                     method = HttpMethod.Delete;
                     break;
@@ -87,6 +89,18 @@ namespace Facebook.Business
             return ExecuteInternal(method, url, null);
         }
 
+        public ApiRequestBase<T> RequestField(string name)
+        {
+            ReturnFields.Add(name);
+            return this;
+        }
+
+        public ApiRequestBase<T> SetParam(string name, object value)
+        {
+            RequestParams[name] = value;
+            return this;
+        }
+
         private async Task<T> ExecuteInternal(HttpMethod method, string url, HttpContent? content)
         {
             var request = new HttpRequestMessage(method, url);
@@ -99,23 +113,22 @@ namespace Facebook.Business
             if (!response.IsSuccessStatusCode)
             {
                 var jToken = await JsonUtils.GetJToken(response).ConfigureAwait(false);
-                // TODO: Produce a better exception
-                throw new ApiRequestException(jToken.ToString());
+                ThrowError(jToken);
             }
 
             return await JsonUtils.GetJson<T>(response).ConfigureAwait(false);
         }
 
-        public ApiRequestBase<T> RequestField(string name)
+        private static void ThrowError(JToken response)
         {
-            ReturnFields.Add(name);
-            return this;
-        }
+            if (response is JObject jObject && jObject.TryGetValue("error", out var error)
+                    && error is JObject errorObject)
+            {
+                throw new ApiRequestException(errorObject);
+            }
 
-        public ApiRequestBase<T> SetParam(string name, object value)
-        {
-            RequestParams[name] = value;
-            return this;
+            // TODO: Produce a better exception
+            throw new ApiRequestException(response.ToString());
         }
     }
 
