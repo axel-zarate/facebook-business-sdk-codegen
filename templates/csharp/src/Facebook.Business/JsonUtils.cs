@@ -21,7 +21,7 @@ namespace Facebook.Business
             }
         };
 
-        private static readonly JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings
+        public static readonly JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new MyContractResolver(Settings)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -9,6 +10,8 @@ namespace Facebook.Business
 {
     internal static class RequestUtils
     {
+        private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         public static string ToQueryString(IEnumerable<KeyValuePair<string, object>> values)
         {
             var builder = new StringBuilder();
@@ -87,12 +90,22 @@ namespace Facebook.Business
                 return b ? "true" : "false";
             }
 
+            if (value is DateTime d)
+            {
+                return ToUnixTime(d).ToString(CultureInfo.InvariantCulture);
+            }
+
             if (value is IEnumerable<string> values)
             {
                 return string.Join(",", values);
             }
 
             return JsonUtils.SerializeObject(value);
+        }
+
+        private static long ToUnixTime(DateTime dateTime)
+        {
+            return Convert.ToInt64((dateTime - Epoch).TotalSeconds);
         }
     }
 }

@@ -113,7 +113,15 @@ namespace Facebook.Business.Ads
         {{/api_spec_based_enum_reference}}
         {{#apis}}
 
-        public class {{name:pascal_case}}ApiRequest : ApiRequestBase<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}JToken{{/return}}{{^return_single_node}}>{{/return_single_node}}>
+        public class {{name:pascal_case}}Model : RequestModelBase
+        {
+            {{#params}}
+            [JsonProperty("{{api_name}}")]
+            public virtual {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}}? {{name:pascal_case}} { get; set; }
+            {{/params}}
+        }
+
+        public sealed class {{name:pascal_case}}ApiRequest : ApiRequestBase<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}ApiNode{{/return}}{{^return_single_node}}>{{/return_single_node}}>
         {
             {{#params}}
             public const string Param{{name:pascal_case}} = "{{api_name}}";
@@ -158,6 +166,11 @@ namespace Facebook.Business.Ads
             public {{name:pascal_case}}ApiRequest(ApiContext context) : base(context) { }
 
             public {{name:pascal_case}}ApiRequest(ApiContext context, string? nodeId) : base(context, nodeId) { }
+
+            public void SetModel({{name:pascal_case}}Model model)
+            {
+                SetModelInternal(model);
+            }
             {{#allow_file_upload}}
 
             public {{name:pascal_case}}ApiRequest AddUploadFile(string uploadName, System.IO.Stream file)

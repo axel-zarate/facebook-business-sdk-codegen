@@ -101,6 +101,15 @@ namespace Facebook.Business
             return this;
         }
 
+        protected void SetModelInternal(RequestModelBase model)
+        {
+            var @params = model.ToParams();
+            foreach (var (key, value) in @params)
+            {
+                RequestParams[key] = value;
+            }
+        }
+
         private async Task<T> ExecuteInternal(HttpMethod method, string url, HttpContent? content)
         {
             var request = new HttpRequestMessage(method, url);
