@@ -13,8 +13,6 @@ namespace Facebook.Business
 
         protected internal override ICollection<string> FieldNames => Array.Empty<string>();
 
-        protected override ICollection<string> ParamNames => Array.Empty<string>();
-
         public ApiRequest(ApiContext context, HttpMethod method, string url) : base(context)
         {
             Method = method.Method.ToUpper();

@@ -14,7 +14,6 @@ namespace Facebook.Business
         protected abstract string Endpoint { get; }
         protected internal abstract ICollection<string> FieldNames { get; }
         protected abstract string Method { get; }
-        protected abstract ICollection<string> ParamNames { get; }
         protected IDictionary<string, object> RequestParams { get; } = new Dictionary<string, object>();
         protected ICollection<string> ReturnFields { get; } = new HashSet<string>();
         protected bool UseVideoEndpoint { get; set; }
