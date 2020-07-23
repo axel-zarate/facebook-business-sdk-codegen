@@ -170,8 +170,8 @@ const CodeGenLanguageCSharp = {
       long: /\b(int|long)\b/,
       double: /(float|double)/gi,
       'IList<$1>': /list\s*<\s*([a-zA-Z0-9_.<>,\s]*?)\s*>/g,
-      '$1Dictionary<string, string>$2': /(^|<)map($|>)/i,
-      'Dictionary<$1, $2>': /map\s*<\s*([a-zA-Z0-9_]*?)\s*,\s*([a-zA-Z0-9_<>]*?)\s*>/g,
+      '$1IDictionary<string, string>$2': /(^|<)map($|>)/i,
+      'IDictionary<$1, $2>': /map\s*<\s*([a-zA-Z0-9_]*?)\s*,\s*([a-zA-Z0-9_<>]*?)\s*>/g,
     };
 
     let oldType;
@@ -182,10 +182,10 @@ const CodeGenLanguageCSharp = {
         newType = newType.replace(typeMapping[replace], replace);
       }
     }
-    // This is to make a type named as list to JToken.
+    // This is to make a type named as list to JArray.
     // However the 'list' should not be preceden by any word,
     // which might be 'blacklist', and should not be replaced
-    newType = newType.replace(/(?<!\w)list(?!<)/g, 'JToken');
+    newType = newType.replace(/(?<!\w)list(?!<)/g, 'JArray');
     newType = newType.replace(/^file$/i, 'System.IO.Stream');
     // List<file> => List<System.IO.Stream>
     newType = newType.replace(/<file>/i, '<System.IO.Stream>');
