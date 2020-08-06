@@ -153,6 +153,17 @@ namespace Facebook.Business
             return apiRequest;
         }
 
+        public static ApiRequestBase<T> SetParamIfNotEmpty<T>(this ApiRequestBase<T> apiRequest, string name, object? value)
+            where T : class
+        {
+            if (value != null && !string.Empty.Equals(value))
+            {
+                apiRequest.SetParam(name, value);
+            }
+
+            return apiRequest;
+        }
+
         public static ApiRequestBase<T> RequestFields<T>(this ApiRequestBase<T> apiRequest, params string[] names)
             where T : class
         {
