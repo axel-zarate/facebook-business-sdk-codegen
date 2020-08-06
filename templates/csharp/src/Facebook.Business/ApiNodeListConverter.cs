@@ -55,8 +55,9 @@ namespace Facebook.Business
                 }
                 if (d.Type == JTokenType.Object)
                 {
-                    //var dataObj = (JObject)d;
-                    throw new MalformedResponseException("Invalid response string: " + jObject.ToString());
+                    // Sometimes the API spec states the request returns a list when in fact it returns a single object
+                    var obj = d.ToObject<T>();
+                    return new ApiNodeList<T> { Data = new List<T> { obj! } };
                 }
             }
 
@@ -109,7 +110,7 @@ namespace Facebook.Business
     }
 
     [Serializable]
-    public class MalformedResponseException : Exception
+    public class MalformedResponseException : ApiRequestException
     {
         public MalformedResponseException()
         {
@@ -126,5 +127,9 @@ namespace Facebook.Business
         protected MalformedResponseException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+
+        public MalformedResponseException(JToken response) : base(response)
+        {
+        }
     }
 }
