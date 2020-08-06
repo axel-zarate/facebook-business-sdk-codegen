@@ -126,7 +126,7 @@ const CodeGenLanguages = {
 
       return filenameToCodeMap;
     },
-    keywords: ['try', 'private', 'public', 'new', 'default', 'class', 'global'],
+    keywords: ['try', 'private', 'public', 'new', 'default', 'class', 'global', 'as', 'do'],
   },
   python: {
     formatFileName(clsName: {[x: string]: string}) {
@@ -148,7 +148,7 @@ const CodeGenLanguages = {
       generateFieldEnumReferences(APISpecs, enumMetadataMap);
       return APISpecs;
     },
-    keywords: ['try', 'default', 'class', 'global', 'in', 'from', 'with'],
+    keywords: ['try', 'default', 'class', 'global', 'in', 'from', 'with', 'as', 'is'],
   },
   java: codegenLanguageJava,
   ruby: codegenLanguageRuby,
