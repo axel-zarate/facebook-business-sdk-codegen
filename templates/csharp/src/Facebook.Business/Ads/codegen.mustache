@@ -41,35 +41,30 @@ namespace Facebook.Business.Ads
     public partial class {{name:pascal_case}} : ApiNode
     {
         {{#fields}}
-
         {{^is_creation_field}}
-        {{#cls_is_Campaign}}
         {{#is_id_field}}
         [JsonProperty("id")]
         {{/is_id_field}}
         {{^is_id_field}}
         [JsonProperty("{{api_name}}")]
         {{/is_id_field}}
-        {{/cls_is_Campaign}}
-        {{^cls_is_Campaign}}
-        [JsonProperty("{{api_name}}")]
-        {{/cls_is_Campaign}}
         public {{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}}? {{name:csharp}} { get; set; }
         {{/is_creation_field}}
+
         {{/fields}}
         {{#cls_is_AdCreative}}
         [JsonProperty("creative_id")]
         public string? CreativeId { get; set; }
-        {{/cls_is_AdCreative}}
 
+        {{/cls_is_AdCreative}}
+        {{#cls_is_AdAccount}}
+        private string PrefixedId => "act_" + Id;
+
+        {{/cls_is_AdAccount}}
         {{^has_get}}public {{/has_get}}{{#has_get}}{{#can_be_data_type}}public {{/can_be_data_type}}{{^can_be_data_type}}internal {{/can_be_data_type}}{{/has_get}}{{name:pascal_case}}()
         {
         }
         {{#has_get}}
-        {{#cls_is_AdAccount}}
-
-        private string PrefixedId => "act_" + Id;
-        {{/cls_is_AdAccount}}
 
         public {{name:pascal_case}}(long id) : this(id.ToString())
         {
@@ -128,13 +123,6 @@ namespace Facebook.Business.Ads
 
         public sealed class {{name:pascal_case}}ApiRequest : ApiRequestBase<{{^return_single_node}}ApiNodeList<{{/return_single_node}}{{{return}}}{{^return}}ApiNode{{/return}}{{^return_single_node}}>{{/return_single_node}}>
         {
-            {{#params}}
-            public const string Param{{name:pascal_case}} = "{{api_name}}";
-            {{/params}}
-            {{#allow_file_upload}}
-            public const string ParamFile = "file";
-
-            {{/allow_file_upload}}
             {{#param_fields}}
             {{^not_visible}}
             public const string Field{{name:pascal_case}} = "{{api_name}}";
@@ -181,34 +169,20 @@ namespace Facebook.Business.Ads
             }
             {{/allow_file_upload}}
             {{#params}}
-
-            public {{api:name:pascal_case}}ApiRequest Set{{#param_name_params}}Param{{/param_name_params}}{{name:pascal_case}}({{{type:csharp}}}{{^type:csharp}}JToken{{/type:csharp}} {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
-            {
-                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
-                return this;
-            }
             {{#is_file_param}}
 
             public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}}(System.IO.Stream {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
             {
-                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                SetParam("{{api_name}}", {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
                 return this;
             }
 
             public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}}(byte[] {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
             {
-                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
+                SetParam("{{api_name}}", {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
                 return this;
             }
             {{/is_file_param}}
-            {{^is_string}}
-
-            public {{api:name:pascal_case}}ApiRequest Set{{name:pascal_case}}(string {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}})
-            {
-                SetParam(Param{{name:pascal_case}}, {{#is_keyword}}@{{/is_keyword}}{{name:camel_case}});
-                return this;
-            }
-            {{/is_string}}
             {{/params}}
             {{#param_fields}}
             {{^not_visible}}
