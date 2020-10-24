@@ -198,6 +198,23 @@
             ]
         },
         {
+            "method": "POST",
+            "endpoint": "business_data",
+            "return": "Page",
+            "params": [
+                {
+                    "name": "data",
+                    "required": true,
+                    "type": "list<string>"
+                },
+                {
+                    "name": "partner_agent",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        {
             "method": "GET",
             "endpoint": "call_to_actions",
             "return": "PageCallToAction",
@@ -586,6 +603,23 @@
                     "name": "type",
                     "required": false,
                     "type": "pageevents_type_enum_param"
+                }
+            ]
+        },
+        {
+            "method": "POST",
+            "endpoint": "extend_thread_control",
+            "return": "Page",
+            "params": [
+                {
+                    "name": "duration",
+                    "required": false,
+                    "type": "unsigned int"
+                },
+                {
+                    "name": "recipient",
+                    "required": true,
+                    "type": "Object"
                 }
             ]
         },
@@ -1510,6 +1544,11 @@
                     "name": "description",
                     "required": false,
                     "type": "string"
+                },
+                {
+                    "name": "enable_backup_ingest",
+                    "required": false,
+                    "type": "bool"
                 },
                 {
                     "name": "encoding_settings",
@@ -2502,6 +2541,11 @@
                     "name": "android_key_hash",
                     "required": false,
                     "type": "string"
+                },
+                {
+                    "name": "burn_media_effect",
+                    "required": false,
+                    "type": "bool"
                 },
                 {
                     "name": "caption",

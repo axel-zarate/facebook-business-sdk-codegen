@@ -2,6 +2,47 @@
     "apis": [
         {
             "method": "DELETE",
+            "endpoint": "assigned_users",
+            "return": "Object",
+            "params": [
+                {
+                    "name": "user",
+                    "required": true,
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "method": "GET",
+            "endpoint": "assigned_users",
+            "return": "AssignedUser",
+            "params": [
+                {
+                    "name": "business",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "method": "POST",
+            "endpoint": "assigned_users",
+            "return": "WhatsAppBusinessAccount",
+            "params": [
+                {
+                    "name": "tasks",
+                    "required": true,
+                    "type": "list<whatsappbusinessaccountassigned_users_tasks_enum_param>"
+                },
+                {
+                    "name": "user",
+                    "required": true,
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "method": "DELETE",
             "endpoint": "message_templates",
             "return": "Object",
             "params": [
@@ -119,6 +160,10 @@
         {
             "name": "on_behalf_of_business_info",
             "type": "Object"
+        },
+        {
+            "name": "primary_funding_id",
+            "type": "string"
         },
         {
             "name": "purchase_order_number",

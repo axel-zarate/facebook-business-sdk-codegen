@@ -1216,6 +1216,7 @@
             "PLATFORM",
             "PLATFORM_USERS",
             "SEED_LIST",
+            "SIGNAL_SOURCE",
             "SMART_AUDIENCE",
             "STORE_VISIT_EVENTS",
             "S_EXPR",
@@ -1887,6 +1888,24 @@
         ]
     },
     {
+        "name": "adaccountads_volume_recommendation_type_enum_param",
+        "node": "AdAccountAdVolume",
+        "field_or_param": "recommendation_type",
+        "values": [
+            "AGGREGATED_BID_LIMITED",
+            "AGGREGATED_BUDGET_LIMITED",
+            "AGGREGATED_COST_LIMITED",
+            "AUCTION_OVERLAP",
+            "CREATIVE_FATIGUE",
+            "FRAGMENTATION",
+            "LEARNING_LIMITED",
+            "TOP_ADSETS_WITH_ADS_UNDER_CAP",
+            "TOP_CAMPAIGNS_WITH_ADS_UNDER_CAP",
+            "UNECONOMICAL_ADS_THROTTLING",
+            "ZERO_IMPRESSION"
+        ]
+    },
+    {
         "name": "adaccountadsbylabels_operator_enum_param",
         "node": "Ad",
         "field_or_param": "operator",
@@ -2214,6 +2233,7 @@
             "VIDEO_COMMENT",
             "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
             "VIDEO_SUPERRES",
+            "VU_GENERATED_VIDEO",
             "WOODHENGE",
             "WORK_KNOWLEDGE_VIDEO",
             "YOUR_DAY"
@@ -5269,6 +5289,7 @@
             "GENDER",
             "INSTANT_ARTICLE_ID",
             "INSTANT_ARTICLE_PAGE_ID",
+            "IS_DEAL_BACKFILL",
             "PLACEMENT",
             "PLACEMENT_NAME",
             "PLATFORM",
@@ -5355,7 +5376,9 @@
         "node": "AdsPixel",
         "field_or_param": "automatic_matching_fields",
         "values": [
+            "country",
             "ct",
+            "db",
             "em",
             "fn",
             "ge",
@@ -5395,6 +5418,17 @@
         ]
     },
     {
+        "name": "adspixelda_checks_connection_method_enum_param",
+        "node": "DACheck",
+        "field_or_param": "connection_method",
+        "values": [
+            "ALL",
+            "APP",
+            "BROWSER",
+            "SERVER"
+        ]
+    },
+    {
         "name": "adspixelstats_aggregation_enum_param",
         "node": "AdsPixelStatsResult",
         "field_or_param": "aggregation",
@@ -5425,6 +5459,7 @@
             "CONTINUOUS_LIFT_CONFIG",
             "GEO_LIFT",
             "LIFT",
+            "PRIVATE_LIFT",
             "SPLIT_TEST"
         ]
     },
@@ -5659,6 +5694,7 @@
             "GENDER",
             "INSTANT_ARTICLE_ID",
             "INSTANT_ARTICLE_PAGE_ID",
+            "IS_DEAL_BACKFILL",
             "PLACEMENT",
             "PLACEMENT_NAME",
             "PLATFORM",
@@ -5838,6 +5874,17 @@
         ]
     },
     {
+        "name": "applicationda_checks_connection_method_enum_param",
+        "node": "DACheck",
+        "field_or_param": "connection_method",
+        "values": [
+            "ALL",
+            "APP",
+            "BROWSER",
+            "SERVER"
+        ]
+    },
+    {
         "name": "applicationevents_type_enum_param",
         "node": "Event",
         "field_or_param": "type",
@@ -5899,6 +5946,22 @@
         "values": [
             "HIGHER_IS_BETTER",
             "LOWER_IS_BETTER"
+        ]
+    },
+    {
+        "name": "applicationlive_videos_broadcast_status_enum_param",
+        "node": "LiveVideo",
+        "field_or_param": "broadcast_status",
+        "values": [
+            "live",
+            "live_stopped",
+            "processing",
+            "scheduled_canceled",
+            "scheduled_expired",
+            "scheduled_live",
+            "scheduled_unpublished",
+            "unpublished",
+            "vod"
         ]
     },
     {
@@ -6016,6 +6079,7 @@
             "CONTINUOUS_LIFT_CONFIG",
             "GEO_LIFT",
             "LIFT",
+            "PRIVATE_LIFT",
             "SPLIT_TEST"
         ]
     },
@@ -6048,6 +6112,7 @@
             "GENDER",
             "INSTANT_ARTICLE_ID",
             "INSTANT_ARTICLE_PAGE_ID",
+            "IS_DEAL_BACKFILL",
             "PLACEMENT",
             "PLACEMENT_NAME",
             "PLATFORM",
@@ -6155,6 +6220,7 @@
             "MANAGE",
             "MANAGE_JOBS",
             "MANAGE_LEADS",
+            "MESSAGING",
             "MODERATE",
             "MODERATE_COMMUNITY",
             "PAGES_MESSAGING",
@@ -6162,6 +6228,7 @@
             "PROFILE_PLUS_ADVERTISE",
             "PROFILE_PLUS_ANALYZE",
             "PROFILE_PLUS_CREATE_CONTENT",
+            "PROFILE_PLUS_LIVE_STREAM_MODERATION",
             "PROFILE_PLUS_MANAGE",
             "PROFILE_PLUS_MESSAGING",
             "PROFILE_PLUS_MODERATE",
@@ -6198,6 +6265,10 @@
             "EMPLOYEE",
             "FINANCE_ANALYST",
             "FINANCE_EDITOR",
+            "FINANCE_EDIT_TASK",
+            "FINANCE_VIEW_TASK",
+            "MODERATE_TASK",
+            "OPERATE_TASK",
             "PARTNER_CENTER_ADMIN",
             "PARTNER_CENTER_ANALYST",
             "PARTNER_CENTER_EDUCATION",
@@ -6227,6 +6298,7 @@
             "MANAGE",
             "MANAGE_JOBS",
             "MANAGE_LEADS",
+            "MESSAGING",
             "MODERATE",
             "MODERATE_COMMUNITY",
             "PAGES_MESSAGING",
@@ -6234,11 +6306,22 @@
             "PROFILE_PLUS_ADVERTISE",
             "PROFILE_PLUS_ANALYZE",
             "PROFILE_PLUS_CREATE_CONTENT",
+            "PROFILE_PLUS_LIVE_STREAM_MODERATION",
             "PROFILE_PLUS_MANAGE",
             "PROFILE_PLUS_MESSAGING",
             "PROFILE_PLUS_MODERATE",
             "READ_PAGE_MAILBOXES",
             "VIEW_MONETIZATION_INSIGHTS"
+        ]
+    },
+    {
+        "name": "businesscollaborative_ads_collaboration_requests_requester_agency_or_brand_enum_param",
+        "node": "CPASCollaborationRequest",
+        "field_or_param": "requester_agency_or_brand",
+        "values": [
+            "AGENCY",
+            "BRAND",
+            "MERCHANT"
         ]
     },
     {
@@ -6389,6 +6472,7 @@
             "MANAGE",
             "MANAGE_JOBS",
             "MANAGE_LEADS",
+            "MESSAGING",
             "MODERATE",
             "MODERATE_COMMUNITY",
             "PAGES_MESSAGING",
@@ -6396,6 +6480,7 @@
             "PROFILE_PLUS_ADVERTISE",
             "PROFILE_PLUS_ANALYZE",
             "PROFILE_PLUS_CREATE_CONTENT",
+            "PROFILE_PLUS_LIVE_STREAM_MODERATION",
             "PROFILE_PLUS_MANAGE",
             "PROFILE_PLUS_MESSAGING",
             "PROFILE_PLUS_MODERATE",
@@ -6519,6 +6604,10 @@
             "EMPLOYEE",
             "FINANCE_ANALYST",
             "FINANCE_EDITOR",
+            "FINANCE_EDIT_TASK",
+            "FINANCE_VIEW_TASK",
+            "MODERATE_TASK",
+            "OPERATE_TASK",
             "PARTNER_CENTER_ADMIN",
             "PARTNER_CENTER_ANALYST",
             "PARTNER_CENTER_EDUCATION",
@@ -6537,6 +6626,10 @@
             "EMPLOYEE",
             "FINANCE_ANALYST",
             "FINANCE_EDITOR",
+            "FINANCE_EDIT_TASK",
+            "FINANCE_VIEW_TASK",
+            "MODERATE_TASK",
+            "OPERATE_TASK",
             "PARTNER_CENTER_ADMIN",
             "PARTNER_CENTER_ANALYST",
             "PARTNER_CENTER_EDUCATION",
@@ -6783,6 +6876,10 @@
             "EMPLOYEE",
             "FINANCE_ANALYST",
             "FINANCE_EDITOR",
+            "FINANCE_EDIT_TASK",
+            "FINANCE_VIEW_TASK",
+            "MODERATE_TASK",
+            "OPERATE_TASK",
             "PARTNER_CENTER_ADMIN",
             "PARTNER_CENTER_ANALYST",
             "PARTNER_CENTER_EDUCATION",
@@ -6846,6 +6943,15 @@
             "SAD",
             "THANKFUL",
             "WOW"
+        ]
+    },
+    {
+        "name": "commercemerchantsettings_cta",
+        "node": "CommerceMerchantSettings",
+        "field_or_param": "cta",
+        "values": [
+            "CONTACT_MERCHANT",
+            "OFFSITE_LINK"
         ]
     },
     {
@@ -7130,6 +7236,7 @@
             "STUDY_GROUP",
             "SUPPORT",
             "TEAMMATES",
+            "THEME",
             "TRAVEL_PLANNING",
             "WORK_ANNOUNCEMENT",
             "WORK_DEMO_GROUP",
@@ -7137,6 +7244,7 @@
             "WORK_EPHEMERAL",
             "WORK_FEEDBACK",
             "WORK_FOR_SALE",
+            "WORK_GARDEN",
             "WORK_LEARNING",
             "WORK_MENTORSHIP",
             "WORK_MULTI_COMPANY",
@@ -7273,6 +7381,7 @@
             "STUDY_GROUP",
             "SUPPORT",
             "TEAMMATES",
+            "THEME",
             "TRAVEL_PLANNING",
             "WORK_ANNOUNCEMENT",
             "WORK_DEMO_GROUP",
@@ -7280,6 +7389,7 @@
             "WORK_EPHEMERAL",
             "WORK_FEEDBACK",
             "WORK_FOR_SALE",
+            "WORK_GARDEN",
             "WORK_LEARNING",
             "WORK_MENTORSHIP",
             "WORK_MULTI_COMPANY",
@@ -7558,6 +7668,7 @@
             "VIDEO_COMMENT",
             "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
             "VIDEO_SUPERRES",
+            "VU_GENERATED_VIDEO",
             "WOODHENGE",
             "WORK_KNOWLEDGE_VIDEO",
             "YOUR_DAY"
@@ -8241,6 +8352,7 @@
             "MANAGE",
             "MANAGE_JOBS",
             "MANAGE_LEADS",
+            "MESSAGING",
             "MODERATE",
             "MODERATE_COMMUNITY",
             "PAGES_MESSAGING",
@@ -8248,6 +8360,7 @@
             "PROFILE_PLUS_ADVERTISE",
             "PROFILE_PLUS_ANALYZE",
             "PROFILE_PLUS_CREATE_CONTENT",
+            "PROFILE_PLUS_LIVE_STREAM_MODERATION",
             "PROFILE_PLUS_MANAGE",
             "PROFILE_PLUS_MESSAGING",
             "PROFILE_PLUS_MODERATE",
@@ -8267,6 +8380,7 @@
             "MANAGE",
             "MANAGE_JOBS",
             "MANAGE_LEADS",
+            "MESSAGING",
             "MODERATE",
             "MODERATE_COMMUNITY",
             "PAGES_MESSAGING",
@@ -8274,6 +8388,7 @@
             "PROFILE_PLUS_ADVERTISE",
             "PROFILE_PLUS_ANALYZE",
             "PROFILE_PLUS_CREATE_CONTENT",
+            "PROFILE_PLUS_LIVE_STREAM_MODERATION",
             "PROFILE_PLUS_MANAGE",
             "PROFILE_PLUS_MESSAGING",
             "PROFILE_PLUS_MODERATE",
@@ -8832,6 +8947,7 @@
             "ICE_BREAKERS",
             "PAYMENT_SETTINGS",
             "PERSISTENT_MENU",
+            "PLATFORM",
             "TARGET_AUDIENCE",
             "WHITELISTED_DOMAINS"
         ]
@@ -9316,6 +9432,7 @@
             "VIDEO_COMMENT",
             "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
             "VIDEO_SUPERRES",
+            "VU_GENERATED_VIDEO",
             "WOODHENGE",
             "WORK_KNOWLEDGE_VIDEO",
             "YOUR_DAY"
@@ -9487,6 +9604,23 @@
         ]
     },
     {
+        "name": "photoreactions_type_enum_param",
+        "node": "Profile",
+        "field_or_param": "type",
+        "values": [
+            "ANGRY",
+            "CARE",
+            "HAHA",
+            "LIKE",
+            "LOVE",
+            "NONE",
+            "PRIDE",
+            "SAD",
+            "THANKFUL",
+            "WOW"
+        ]
+    },
+    {
         "name": "placetopic_icon_size",
         "node": null,
         "field_or_param": "icon_size",
@@ -9629,6 +9763,8 @@
             "LOCAL",
             "LOOKALIKE",
             "MARKETPLACE_DEFAULT",
+            "MARKETPLACE_NATIONWIDE_AUDIENCE",
+            "MARKETPLACE_SAVED_AUDIENCE",
             "MULT_CUSTOM_AUDIENCES",
             "NCPP",
             "SAVED_AUDIENCE",
@@ -9726,6 +9862,7 @@
             "COLLAB_ADS",
             "COLLAB_ADS_FOR_MARKETPLACE_PARTNER",
             "IG_SHOPPING",
+            "MARKETPLACE_SHOPS",
             "TEST"
         ]
     },
@@ -9785,6 +9922,39 @@
         ]
     },
     {
+        "name": "productcatalogitems_batch_item_sub_type_enum_param",
+        "node": "ProductCatalog",
+        "field_or_param": "item_sub_type",
+        "values": [
+            "APPLIANCES",
+            "BABY_FEEDING",
+            "BABY_TRANSPORT",
+            "BEAUTY",
+            "BEDDING",
+            "CAMERAS",
+            "CELL_PHONES_AND_SMART_WATCHES",
+            "CLEANING_SUPPLIES",
+            "CLOTHING",
+            "CLOTHING_ACCESSORIES",
+            "COMPUTERS_AND_TABLETS",
+            "DIAPERING_AND_POTTY_TRAINING",
+            "ELECTRONICS_ACCESSORIES",
+            "FURNITURE",
+            "HEALTH",
+            "HOME_GOODS",
+            "JEWELRY",
+            "NURSERY",
+            "PRINTERS_AND_SCANNERS",
+            "PROJECTORS",
+            "SHOES_AND_FOOTWEAR",
+            "SOFTWARE",
+            "TOYS",
+            "TVS_AND_MONITORS",
+            "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
+            "WATCHES"
+        ]
+    },
+    {
         "name": "productcatalogpricing_variables_batch_standard_enum_param",
         "node": "ProductCatalog",
         "field_or_param": "standard",
@@ -9838,6 +10008,39 @@
             "TRANSACTABLE_ITEMS",
             "VEHICLES",
             "VEHICLE_OFFER"
+        ]
+    },
+    {
+        "name": "productcatalogproduct_feeds_item_sub_type_enum_param",
+        "node": "ProductFeed",
+        "field_or_param": "item_sub_type",
+        "values": [
+            "APPLIANCES",
+            "BABY_FEEDING",
+            "BABY_TRANSPORT",
+            "BEAUTY",
+            "BEDDING",
+            "CAMERAS",
+            "CELL_PHONES_AND_SMART_WATCHES",
+            "CLEANING_SUPPLIES",
+            "CLOTHING",
+            "CLOTHING_ACCESSORIES",
+            "COMPUTERS_AND_TABLETS",
+            "DIAPERING_AND_POTTY_TRAINING",
+            "ELECTRONICS_ACCESSORIES",
+            "FURNITURE",
+            "HEALTH",
+            "HOME_GOODS",
+            "JEWELRY",
+            "NURSERY",
+            "PRINTERS_AND_SCANNERS",
+            "PROJECTORS",
+            "SHOES_AND_FOOTWEAR",
+            "SOFTWARE",
+            "TOYS",
+            "TVS_AND_MONITORS",
+            "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
+            "WATCHES"
         ]
     },
     {
@@ -10945,6 +11148,7 @@
             "CONTINUOUS_LIFT_CONFIG",
             "GEO_LIFT",
             "LIFT",
+            "PRIVATE_LIFT",
             "SPLIT_TEST"
         ]
     },
@@ -11378,6 +11582,7 @@
             "VIDEO_COMMENT",
             "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
             "VIDEO_SUPERRES",
+            "VU_GENERATED_VIDEO",
             "WOODHENGE",
             "WORK_KNOWLEDGE_VIDEO",
             "YOUR_DAY"
@@ -11690,6 +11895,23 @@
         ]
     },
     {
+        "name": "videoreactions_type_enum_param",
+        "node": "Profile",
+        "field_or_param": "type",
+        "values": [
+            "ANGRY",
+            "CARE",
+            "HAHA",
+            "LIKE",
+            "LOVE",
+            "NONE",
+            "PRIDE",
+            "SAD",
+            "THANKFUL",
+            "WOW"
+        ]
+    },
+    {
         "name": "videovideo_insights_period_enum_param",
         "node": "InsightsResult",
         "field_or_param": "period",
@@ -11699,6 +11921,18 @@
             "lifetime",
             "month",
             "week"
+        ]
+    },
+    {
+        "name": "whatsappbusinessaccountassigned_users_tasks_enum_param",
+        "node": "WhatsAppBusinessAccount",
+        "field_or_param": "tasks",
+        "values": [
+            "DEVELOP",
+            "MANAGE",
+            "MANAGE_PHONE",
+            "MANAGE_TEMPLATES",
+            "VIEW_COST"
         ]
     },
     {

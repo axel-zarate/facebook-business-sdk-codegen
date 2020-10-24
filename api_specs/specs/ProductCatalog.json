@@ -37,6 +37,11 @@
                     "name": "permitted_tasks",
                     "required": false,
                     "type": "list<productcatalogagencies_permitted_tasks_enum_param>"
+                },
+                {
+                    "name": "utm_settings",
+                    "required": false,
+                    "type": "map"
                 }
             ]
         },
@@ -496,6 +501,11 @@
                     "type": "bool"
                 },
                 {
+                    "name": "item_sub_type",
+                    "required": false,
+                    "type": "productcatalogitems_batch_item_sub_type_enum_param"
+                },
+                {
                     "name": "item_type",
                     "required": true,
                     "type": "string"
@@ -615,6 +625,11 @@
                     "type": "string"
                 },
                 {
+                    "name": "item_sub_type",
+                    "required": false,
+                    "type": "productcatalogproduct_feeds_item_sub_type_enum_param"
+                },
+                {
                     "name": "name",
                     "required": false,
                     "type": "string"
@@ -725,6 +740,11 @@
                     "name": "name",
                     "required": true,
                     "type": "string"
+                },
+                {
+                    "name": "retailer_id",
+                    "required": false,
+                    "type": "string"
                 }
             ]
         },
@@ -818,6 +838,11 @@
                     "type": "string"
                 },
                 {
+                    "name": "category_specific_fields",
+                    "required": false,
+                    "type": "map"
+                },
+                {
                     "name": "checkout_url",
                     "required": false,
                     "type": "string"
@@ -879,6 +904,11 @@
                 },
                 {
                     "name": "expiration_date",
+                    "required": false,
+                    "type": "string"
+                },
+                {
+                    "name": "fb_product_category",
                     "required": false,
                     "type": "string"
                 },

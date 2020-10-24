@@ -8,6 +8,7 @@
 
 export { default as FacebookAdsApi } from './../src/api';
 export { default as FacebookAdsApiBatch } from './../src/api-batch';
+export { default as AbstractCrudObject } from './abstract-crud-object';
 export { default as APIRequest } from './../src/api-request';
 export { default as APIResponse } from './../src/api-response';
 export { default as CrashReporter } from './../src/crash-reporter';
@@ -18,6 +19,10 @@ export { default as EventResponse } from './../src/objects/serverside/event-resp
 export { default as ServerEvent } from './../src/objects/serverside/server-event';
 export { default as UserData } from './../src/objects/serverside/user-data';
 export { default as DeliveryCategory } from './../src/objects/serverside/delivery-category';
+export { default as HttpMethod } from './../src/objects/serverside/http-method';
+export { default as HttpServiceClientConfig } from './../src/objects/serverside/http-service-client-config';
+export { default as HttpServiceInterface } from './../src/objects/serverside/http-service-interface';
+export { default as BatchProcessor } from './../src/objects/serverside/batch-processor';
 
 {{#api_specs}}
 export { default as {{name:pascal_case}} } from './../src/objects/{{name:hyphen}}';

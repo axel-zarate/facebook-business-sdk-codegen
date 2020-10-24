@@ -14,6 +14,11 @@
                     "name": "merchant_order_reference",
                     "required": false,
                     "type": "string"
+                },
+                {
+                    "name": "return_error_response",
+                    "required": false,
+                    "type": "bool"
                 }
             ]
         },
@@ -60,6 +65,12 @@
             "method": "GET",
             "endpoint": "payments",
             "return": "CommerceOrderPayment",
+            "params": []
+        },
+        {
+            "method": "GET",
+            "endpoint": "promotion_details",
+            "return": "CommercePromotionDetail",
             "params": []
         },
         {
@@ -243,6 +254,10 @@
         },
         {
             "name": "is_group_buy",
+            "type": "bool"
+        },
+        {
+            "name": "is_test_order",
             "type": "bool"
         },
         {
