@@ -28,6 +28,18 @@
             ]
         },
         {
+            "method": "DELETE",
+            "endpoint": "ad_accounts",
+            "return": "Object",
+            "params": [
+                {
+                    "name": "adaccount_id",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        {
             "method": "GET",
             "endpoint": "ad_studies",
             "return": "AdStudy",
@@ -454,23 +466,6 @@
         },
         {
             "method": "POST",
-            "endpoint": "business_users",
-            "return": "BusinessUser",
-            "params": [
-                {
-                    "name": "email",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "role",
-                    "required": false,
-                    "type": "businessbusiness_users_role_enum_param"
-                }
-            ]
-        },
-        {
-            "method": "POST",
             "endpoint": "claim_custom_conversions",
             "return": "CustomConversion",
             "params": [
@@ -841,6 +836,12 @@
             "params": []
         },
         {
+            "method": "GET",
+            "endpoint": "instagram_business_accounts",
+            "return": "IGUser",
+            "params": []
+        },
+        {
             "method": "DELETE",
             "endpoint": "managed_businesses",
             "return": "Object",
@@ -1138,11 +1139,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "commerce_merchant_settings",
-                    "required": false,
-                    "type": "Object"
-                },
-                {
                     "name": "da_display_settings",
                     "required": false,
                     "type": "Object"
@@ -1163,11 +1159,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "onsite_commerce_merchant",
-                    "required": false,
-                    "type": "Object"
-                },
-                {
                     "name": "parent_catalog_id",
                     "required": false,
                     "type": "string"
@@ -1183,6 +1174,12 @@
                     "type": "businessowned_product_catalogs_vertical_enum_param"
                 }
             ]
+        },
+        {
+            "method": "GET",
+            "endpoint": "owned_whatsapp_business_accounts",
+            "return": "WhatsAppBusinessAccount",
+            "params": []
         },
         {
             "method": "DELETE",
@@ -1315,28 +1312,6 @@
             "endpoint": "system_users",
             "return": "SystemUser",
             "params": []
-        },
-        {
-            "method": "POST",
-            "endpoint": "system_users",
-            "return": "SystemUser",
-            "params": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "role",
-                    "required": false,
-                    "type": "businesssystem_users_role_enum_param"
-                },
-                {
-                    "name": "system_user_id",
-                    "required": false,
-                    "type": "int"
-                }
-            ]
         },
         {
             "method": "GET",
