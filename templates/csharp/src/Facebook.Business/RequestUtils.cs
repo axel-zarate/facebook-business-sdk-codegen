@@ -74,6 +74,18 @@ namespace Facebook.Business
             return formEncoded;
         }
 
+        public static string AddQueryString(string url, string name, object value)
+        {
+            var encoded = UrlEncoder.Default.Encode(name) + "=" + UrlEncoder.Default.Encode(ParamToString(value));
+
+            if (url.IndexOf("?") > 0)
+            {
+                return url + "&" + encoded;
+            }
+
+            return url + "?" + encoded;
+        }
+
         public static string ParamToString(object value)
         {
             if (value is null)

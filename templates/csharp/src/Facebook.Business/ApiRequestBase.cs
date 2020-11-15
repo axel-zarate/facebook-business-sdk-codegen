@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -65,6 +66,47 @@ namespace Facebook.Business
             return ExecuteInternal(method, NodeId + Endpoint + queryString, content);
         }
 
+        public async Task WriteTo(TextWriter writer)
+        {
+            Dictionary<string, object>? @params = null;
+            string? queryString = null;
+
+            switch (Method)
+            {
+                case "GET":
+                case "DELETE":
+                    queryString = RequestUtils.ToQueryString(RequestParams);
+                    break;
+
+                case "POST":
+                    @params = new Dictionary<string, object>(RequestParams);
+                    break;
+
+                default:
+                    throw new ArgumentException($"Invalid method name '{Method}'.", nameof(Method));
+            }
+
+            var relativeUrl = NodeId + Endpoint + queryString;
+            var url = Context.BackChannel.BaseAddress != null ? new Uri(Context.BackChannel.BaseAddress, relativeUrl).ToString() : relativeUrl;
+            await writer.WriteAsync($"{Method} {url}").ConfigureAwait(false);
+            if (@params != null)
+            {
+                foreach (var (key, value) in @params)
+                {
+                    await writer.WriteLineAsync();
+                    await writer.WriteAsync($"{key}=").ConfigureAwait(false);
+                    if (value is Stream s)
+                    {
+                        await writer.WriteAsync($"<file({s.Length})>").ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        await writer.WriteAsync(RequestUtils.ParamToString(value)).ConfigureAwait(false);
+                    }
+                }
+            }
+        }
+
         public Task<T> ExecuteAsync(string url)
         {
             HttpMethod method;
@@ -83,6 +125,11 @@ namespace Facebook.Business
 
                 default:
                     throw new ArgumentException($"Invalid method name '{Method}'.", nameof(Method));
+            }
+
+            if (Context.AppSecretProof != null)
+            {
+                url = RequestUtils.AddQueryString(url, "appsecret_proof", Context.AppSecretProof);
             }
 
             return ExecuteInternal(method, url, null);

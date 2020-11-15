@@ -33,12 +33,6 @@ namespace Facebook.Business
             }
         }
 
-        public ApiContext(string accessToken, HttpClient backChannel)
-        {
-            AccessToken = accessToken;
-            BackChannel = backChannel;
-        }
-
         public ApiContext(string accessToken, string appSecret, string appId, HttpClient backChannel)
         {
             AccessToken = accessToken;
