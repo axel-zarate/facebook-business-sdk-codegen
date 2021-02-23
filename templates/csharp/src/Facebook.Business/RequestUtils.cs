@@ -55,7 +55,9 @@ namespace Facebook.Business
                 }
             }
 
+#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
             var formEncoded = new FormUrlEncodedContent(values);
+#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
             if (files.Count > 0)
             {
                 var multiPart = new MultipartFormDataContent

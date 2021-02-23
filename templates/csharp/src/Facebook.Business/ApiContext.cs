@@ -26,7 +26,7 @@ namespace Facebook.Business
             {
                 if (SendAppSecretProof && AppSecret != null && _appSecretProof is null)
                 {
-                    _appSecretProof = GenerateAppSecretProof();
+                    _appSecretProof = GenerateAppSecretProof(AppSecret);
                 }
 
                 return _appSecretProof;
@@ -41,9 +41,9 @@ namespace Facebook.Business
             BackChannel = backChannel;
         }
 
-        private string GenerateAppSecretProof()
+        private string GenerateAppSecretProof(string appSecret)
         {
-            using var algorithm = new HMACSHA256(Encoding.ASCII.GetBytes(AppSecret));
+            using var algorithm = new HMACSHA256(Encoding.ASCII.GetBytes(appSecret!));
             var hash = algorithm.ComputeHash(Encoding.ASCII.GetBytes(AccessToken));
             var builder = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)

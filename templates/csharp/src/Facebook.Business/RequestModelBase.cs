@@ -35,7 +35,7 @@ namespace Facebook.Business
                     return token;
 
                 case JTokenType.Integer:
-                    return token.Value<int>();
+                    return token.Value<long>();
 
                 case JTokenType.Float:
                     return token.Value<double>();

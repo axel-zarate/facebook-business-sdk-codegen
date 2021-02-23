@@ -83,7 +83,7 @@ namespace Facebook.Business
                     break;
 
                 default:
-                    throw new ArgumentException($"Invalid method name '{Method}'.", nameof(Method));
+                    throw new InvalidOperationException($"Invalid method name '{Method}'.");
             }
 
             var relativeUrl = NodeId + Endpoint + queryString;
@@ -93,7 +93,7 @@ namespace Facebook.Business
             {
                 foreach (var (key, value) in @params)
                 {
-                    await writer.WriteLineAsync();
+                    await writer.WriteLineAsync().ConfigureAwait(false);
                     await writer.WriteAsync($"{key}=").ConfigureAwait(false);
                     if (value is Stream s)
                     {

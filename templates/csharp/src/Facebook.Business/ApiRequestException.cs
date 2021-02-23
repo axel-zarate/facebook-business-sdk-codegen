@@ -33,7 +33,7 @@ namespace Facebook.Business
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         {
-            Response = (ErrorResponse)info.GetValue(nameof(Response), typeof(ErrorResponse));
+            Response = (ErrorResponse?)info.GetValue(nameof(Response), typeof(ErrorResponse));
         }
     }
 }
