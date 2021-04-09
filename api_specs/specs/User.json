@@ -7,6 +7,28 @@
             "params": []
         },
         {
+            "method": "POST",
+            "endpoint": "access_tokens",
+            "return": "User",
+            "params": [
+                {
+                    "name": "business_app",
+                    "required": true,
+                    "type": "int"
+                },
+                {
+                    "name": "page_id",
+                    "required": false,
+                    "type": "string"
+                },
+                {
+                    "name": "scope",
+                    "required": false,
+                    "type": "list<Permission>"
+                }
+            ]
+        },
+        {
             "method": "GET",
             "endpoint": "accounts",
             "return": "Page",
@@ -1495,8 +1517,8 @@
         },
         {
             "method": "GET",
-            "endpoint": "owned_product_catalogs",
-            "return": "ProductCatalog",
+            "endpoint": "payment_transactions",
+            "return": "PaymentEnginePayment",
             "params": []
         },
         {
@@ -1847,6 +1869,43 @@
         },
         {
             "method": "GET",
+            "endpoint": "posts",
+            "return": "Post",
+            "params": [
+                {
+                    "name": "include_hidden",
+                    "required": false,
+                    "type": "bool"
+                },
+                {
+                    "name": "q",
+                    "required": false,
+                    "type": "string"
+                },
+                {
+                    "name": "show_expired",
+                    "required": false,
+                    "type": "bool"
+                },
+                {
+                    "name": "since",
+                    "required": false,
+                    "type": "datetime"
+                },
+                {
+                    "name": "until",
+                    "required": false,
+                    "type": "datetime"
+                },
+                {
+                    "name": "with",
+                    "required": false,
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "method": "GET",
             "endpoint": "rich_media_documents",
             "return": "Canvas",
             "params": [
@@ -1905,11 +1964,6 @@
                     "name": "asked_fun_fact_prompt_id",
                     "required": false,
                     "type": "unsigned int"
-                },
-                {
-                    "name": "attribution_app_id",
-                    "required": false,
-                    "type": "string"
                 },
                 {
                     "name": "audio_story_wave_animation_handle",
@@ -2339,20 +2393,8 @@
             "type": "string"
         },
         {
-            "name": "address",
-            "type": "Location"
-        },
-        {
-            "name": "admin_notes",
-            "type": "list<PageAdminNote>"
-        },
-        {
             "name": "age_range",
             "type": "AgeRange"
-        },
-        {
-            "name": "auth_method",
-            "type": "string"
         },
         {
             "name": "birthday",
@@ -2365,10 +2407,6 @@
         {
             "name": "currency",
             "type": "Currency"
-        },
-        {
-            "name": "devices",
-            "type": "list<UserDevice>"
         },
         {
             "name": "education",
@@ -2459,10 +2497,6 @@
             "type": "list<string>"
         },
         {
-            "name": "messenger_join_notifications_enabled",
-            "type": "bool"
-        },
-        {
             "name": "middle_name",
             "type": "string"
         },
@@ -2485,14 +2519,6 @@
         {
             "name": "profile_pic",
             "type": "string"
-        },
-        {
-            "name": "public_key",
-            "type": "string"
-        },
-        {
-            "name": "published_timeline",
-            "type": "bool"
         },
         {
             "name": "quotes",
@@ -2543,14 +2569,6 @@
             "type": "datetime"
         },
         {
-            "name": "user_storage_key",
-            "type": "string"
-        },
-        {
-            "name": "username",
-            "type": "string"
-        },
-        {
             "name": "verified",
             "type": "bool"
         },
@@ -2561,10 +2579,6 @@
         {
             "name": "website",
             "type": "string"
-        },
-        {
-            "name": "work",
-            "type": "list<Object>"
         }
     ]
 }

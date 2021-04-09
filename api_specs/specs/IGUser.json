@@ -2,6 +2,18 @@
     "apis": [
         {
             "method": "GET",
+            "endpoint": "content_publishing_limit",
+            "return": "ContentPublishingLimitResponse",
+            "params": [
+                {
+                    "name": "since",
+                    "required": false,
+                    "type": "datetime"
+                }
+            ]
+        },
+        {
+            "method": "GET",
             "endpoint": "insights",
             "return": "InstagramInsightsResult",
             "params": [
@@ -164,10 +176,6 @@
         {
             "name": "ig_id",
             "type": "int"
-        },
-        {
-            "name": "is_ig_shopping_seller_policy_enabled",
-            "type": "bool"
         },
         {
             "name": "media_count",
