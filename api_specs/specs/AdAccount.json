@@ -134,8 +134,26 @@
         },
         {
             "method": "GET",
+            "endpoint": "ad_saved_keywords",
+            "return": "AdSavedKeywords",
+            "params": [
+                {
+                    "name": "fields",
+                    "required": false,
+                    "type": "list<string>"
+                }
+            ]
+        },
+        {
+            "method": "GET",
             "endpoint": "ad_studies",
             "return": "AdStudy",
+            "params": []
+        },
+        {
+            "method": "GET",
+            "endpoint": "adcloudplayables",
+            "return": "CloudGame",
             "params": []
         },
         {
@@ -1541,23 +1559,6 @@
             "params": []
         },
         {
-            "method": "POST",
-            "endpoint": "agencies",
-            "return": "AdAccount",
-            "params": [
-                {
-                    "name": "business",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "permitted_tasks",
-                    "required": false,
-                    "type": "list<adaccountagencies_permitted_tasks_enum_param>"
-                }
-            ]
-        },
-        {
             "method": "GET",
             "endpoint": "applications",
             "return": "Application",
@@ -1674,23 +1675,6 @@
                     "name": "notification_uri",
                     "required": false,
                     "type": "string"
-                }
-            ]
-        },
-        {
-            "method": "POST",
-            "endpoint": "audiencereplace",
-            "return": "Object",
-            "params": [
-                {
-                    "name": "payload",
-                    "required": true,
-                    "type": "Object"
-                },
-                {
-                    "name": "session",
-                    "required": true,
-                    "type": "Object"
                 }
             ]
         },
@@ -1863,9 +1847,19 @@
                     "type": "unsigned int"
                 },
                 {
+                    "name": "start_time",
+                    "required": false,
+                    "type": "datetime"
+                },
+                {
                     "name": "status",
                     "required": false,
                     "type": "adaccountcampaigns_status_enum_param"
+                },
+                {
+                    "name": "stop_time",
+                    "required": false,
+                    "type": "datetime"
                 },
                 {
                     "name": "topline_id",
@@ -2064,16 +2058,6 @@
                     "type": "list<Object>"
                 },
                 {
-                    "name": "is_household",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
-                    "name": "is_household_exclusion",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
                     "name": "is_snapshot",
                     "required": false,
                     "type": "bool"
@@ -2159,19 +2143,9 @@
                     "type": "string"
                 },
                 {
-                    "name": "seed_audience",
-                    "required": false,
-                    "type": "unsigned int"
-                },
-                {
                     "name": "subtype",
                     "required": false,
                     "type": "adaccountcustomaudiences_subtype_enum_param"
-                },
-                {
-                    "name": "tags",
-                    "required": false,
-                    "type": "list<string>"
                 },
                 {
                     "name": "video_group_ids",
@@ -2483,7 +2457,7 @@
         {
             "method": "POST",
             "endpoint": "insights",
-            "return": "AdReportRun",
+            "return": "Object",
             "params": [
                 {
                     "name": "action_attribution_windows",
@@ -2597,6 +2571,18 @@
             "endpoint": "instagram_accounts",
             "return": "InstagramUser",
             "params": []
+        },
+        {
+            "method": "GET",
+            "endpoint": "ios_fourteen_campaign_limits",
+            "return": "AdAccountIosFourteenCampaignLimits",
+            "params": [
+                {
+                    "name": "app_id",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
         },
         {
             "method": "GET",
@@ -2737,16 +2723,6 @@
                     "type": "list<Object>"
                 },
                 {
-                    "name": "is_household",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
-                    "name": "is_household_exclusion",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
                     "name": "is_snapshot",
                     "required": false,
                     "type": "bool"
@@ -2782,19 +2758,9 @@
                     "type": "unsigned int"
                 },
                 {
-                    "name": "seed_audience",
-                    "required": false,
-                    "type": "unsigned int"
-                },
-                {
                     "name": "subtype",
                     "required": false,
                     "type": "adaccountproduct_audiences_subtype_enum_param"
-                },
-                {
-                    "name": "tags",
-                    "required": false,
-                    "type": "list<string>"
                 }
             ]
         },

@@ -1672,11 +1672,6 @@
             "return": "Group",
             "params": [
                 {
-                    "name": "archive",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
                     "name": "cover",
                     "required": false,
                     "type": "string"

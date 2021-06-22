@@ -236,16 +236,6 @@
                     "type": "list<Object>"
                 },
                 {
-                    "name": "is_household",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
-                    "name": "is_household_exclusion",
-                    "required": false,
-                    "type": "bool"
-                },
-                {
                     "name": "lookalike_spec",
                     "required": false,
                     "type": "string"
@@ -291,11 +281,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "seed_audience",
-                    "required": false,
-                    "type": "unsigned int"
-                },
-                {
                     "name": "tags",
                     "required": false,
                     "type": "list<string>"
@@ -327,6 +312,10 @@
         {
             "name": "datafile_custom_audience_uploading_status",
             "type": "string"
+        },
+        {
+            "name": "delete_time",
+            "type": "int"
         },
         {
             "name": "delivery_status",

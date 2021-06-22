@@ -2,8 +2,26 @@
     "apis": [
         {
             "method": "GET",
+            "endpoint": "augmented_realities_metadata",
+            "return": "DynamicARMetadata",
+            "params": []
+        },
+        {
+            "method": "GET",
+            "endpoint": "channels_to_integrity_status",
+            "return": "CatalogItemChannelsToIntegrityStatus",
+            "params": []
+        },
+        {
+            "method": "GET",
             "endpoint": "hotel_rooms",
             "return": "HotelRoom",
+            "params": []
+        },
+        {
+            "method": "GET",
+            "endpoint": "videos_metadata",
+            "return": "DynamicVideoMetadata",
             "params": []
         },
         {
@@ -126,6 +144,10 @@
         {
             "name": "id",
             "type": "string"
+        },
+        {
+            "name": "image_fetch_status",
+            "type": "Hotel_image_fetch_status"
         },
         {
             "name": "images",

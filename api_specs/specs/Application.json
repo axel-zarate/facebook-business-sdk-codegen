@@ -371,6 +371,30 @@
         },
         {
             "method": "GET",
+            "endpoint": "aem_conversion_configs",
+            "return": "AEMConversionConfig",
+            "params": [
+                {
+                    "name": "advertiser_ids",
+                    "required": false,
+                    "type": "list<string>"
+                }
+            ]
+        },
+        {
+            "method": "POST",
+            "endpoint": "aem_conversions",
+            "return": "Object",
+            "params": [
+                {
+                    "name": "aem_conversions",
+                    "required": true,
+                    "type": "list<map>"
+                }
+            ]
+        },
+        {
+            "method": "GET",
             "endpoint": "agencies",
             "return": "Business",
             "params": []
@@ -394,6 +418,11 @@
                     "name": "request_id",
                     "required": false,
                     "type": "string"
+                },
+                {
+                    "name": "sync_api",
+                    "required": false,
+                    "type": "bool"
                 }
             ]
         },
@@ -401,12 +430,6 @@
             "method": "GET",
             "endpoint": "android_dialog_configs",
             "return": "ApplicationDialogConfig",
-            "params": []
-        },
-        {
-            "method": "GET",
-            "endpoint": "app_event_types",
-            "return": "ApplicationAppEventTypes",
             "params": []
         },
         {
@@ -1127,10 +1150,44 @@
             ]
         },
         {
+            "method": "POST",
+            "endpoint": "push_token_register",
+            "return": "Object",
+            "params": [
+                {
+                    "name": "device_id",
+                    "required": false,
+                    "type": "string"
+                },
+                {
+                    "name": "push_token",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        {
             "method": "GET",
             "endpoint": "roles",
             "return": "ApplicationRoles",
             "params": []
+        },
+        {
+            "method": "POST",
+            "endpoint": "send_notification",
+            "return": "Object",
+            "params": [
+                {
+                    "name": "payload",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "token_id",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
         },
         {
             "method": "GET",
