@@ -43,7 +43,7 @@ namespace Facebook.Business
 
         private string GenerateAppSecretProof(string appSecret)
         {
-            using var algorithm = new HMACSHA256(Encoding.ASCII.GetBytes(appSecret!));
+            using var algorithm = new HMACSHA256(Encoding.ASCII.GetBytes(appSecret));
             var hash = algorithm.ComputeHash(Encoding.ASCII.GetBytes(AccessToken));
             var builder = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)

@@ -171,7 +171,7 @@ const CodeGenLanguageCSharp = {
       double: /(float|double)/gi,
       'IList<$1>': /list\s*<\s*([a-zA-Z0-9_.<>,\s]*?)\s*>/g,
       '$1IDictionary<string, string>$2': /(^|<)map($|>)/i,
-      'IDictionary<$1, $2>': /map\s*<\s*([a-zA-Z0-9_]*?)\s*,\s*([a-zA-Z0-9_<>]*?)\s*>/g,
+      'IDictionary<$1, $2>': /map\s*<\s*([a-zA-Z0-9_]*?)\s*,\s*([a-zA-Z0-9_<>, ]*?)\s*>/g,
     };
 
     let oldType;
